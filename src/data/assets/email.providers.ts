@@ -19,8 +19,8 @@ export class EmailSender {
             },
             port: 587,                                      // port
             auth: {
-                user: "coasthub@outlook.com.br",
-                pass: "co@$thub2021"
+                user: process.env.EMAIL_ADRESS,
+                pass: process.env.EMAIL_PASSWORD
             }
         })
     }
@@ -29,7 +29,7 @@ export class EmailSender {
 
         const emailTemplate = bussines ? this.templates.emailBussinesUser : this.templates.emailClientUser 
 
-        const info = await this.transporter.sendMail({
+        await this.transporter.sendMail({
             from: '"CoastHub 🌊" <coasthub@outlook.com.br>',
             to: reciverEmail,
             subject: '🏖️ Seja bem vindo a CoastHub',
